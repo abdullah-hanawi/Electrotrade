@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الكتروتريد | للأجهزة والحلول الصناعية</title>
+    <style>
+        /* --- المتغيرات والألوان الصناعية --- */
+        :root {
+            --dark-blue: #1e293b; /* أزرق غامق صناعي */
+            --light-blue: #3b82f6; /* أزرق مساعد */
+            --dark-gray: #334155; /* رمادي غامق للنصوص */
+            --light-gray: #f8fafc; /* خلفية فاتحة */
+            --border-color: #cbd5e1;
+            --white: #ffffff;
+        }
+
+        /* --- التنسيقات العامة --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* --- الهيدر (رأس الموقع) --- */
+        header {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            padding: 20px 0;
+            border-bottom: 4px solid var(--light-blue);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo h1 {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: var(--light-blue);
+        }
+
+        /* --- محرك البحث --- */
+        .search-box {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-box input {
+            padding: 10px 15px;
+            width: 300px;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        /* --- القسم التعريفي (الوصف) --- */
+        .hero-section {
+            background: linear-gradient(rgba(30, 41, 59, 0.9), rgba(30, 41, 59, 0.9)), url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1200') no-repeat center center/cover;
+            color: var(--white);
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .hero-section h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: var(--light-blue);
+        }
+
+        .hero-section p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 18px;
+            font-weight: 300;
+        }
+
+        /* --- قسم المنتجات --- */
+        .products-section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 26px;
+            color: var(--dark-blue);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: var(--light-blue);
+            margin: 10px auto 0;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 25px;
+        }
+
+        .product-card {
+            background-color: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-color: var(--light-blue);
+        }
+
+        /* أيقونة تعبيرية للمنتجات الصناعية */
+        .product-icon {
+            font-size: 40px;
+            color: var(--dark-blue);
+            margin-bottom: 15px;
+        }
+
+        .product-card h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: var(--dark-blue);
+        }
+
+        .product-card p {
+            font-size: 14px;
+            color: #64748b;
+        }
+
+        /* رسالة عدم وجود نتائج */
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 30px;
+            font-size: 18px;
+            color: #94a3b8;
+            display: none;
+        }
+
+        /* --- قسم طلب الاقتباس والبيانات --- */
+        .order-section {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            padding: 60px 0;
+        }
+
+        .order-section .section-title {
+            color: var(--white);
+        }
+
+        .order-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .form-group input, 
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background-color: var(--white);
+            color: var(--dark-gray);
+            font-size: 15px;
+            outline: none;
+        }
+
+        .form-group input:focus, 
+        .form-group textarea:focus {
+            border-color: var(--light-blue);
+        }
+
+        .submit-btn {
+            background-color: var(--light-blue);
+            color: var(--white);
+            border: none;
+            padding: 14px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #2563eb;
+        }
+
+        /* --- الفوتر (أسفل الموقع) --- */
+        footer {
+            background-color: #0f172a;
+            color: #94a3b8;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 14px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* --- شاشات الهاتف --- */
+        @media (max-width: 768px) {
+            header .container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .search-box input {
+                width: 100%;
+            }
+            .order-form {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>الكترو<span>تريد</span></h1>
+            </div>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="ابحث عن منتج صناعي..." onkeyup="searchProducts()">
+            </div>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <div class="container">
+            <h2>شريككم الموثوق في التجهيزات الصناعية</h2>
+            <p>
+                نحن في <strong>الكتروتريد</strong> متخصصون في استيراد وتوريد أرقى الأجهزة والمكونات الصناعية مباشرة من المصانع العالمية، مما يتيح لنا تقديم <strong>أسعار تنافسية واقتصادية تناسب خطوط إنتاجكم</strong>. ولا يتوقف دورنا عند البيع؛ بل نمتلك <strong>مركز صيانة متكامل ومجهز</strong> يضم مهندسين وفنيين لتقديم الدعم الفني والإصلاح الفوري لضمان استمرار أعمالكم دون توقف.
+            </p>
+        </div>
+    </section>
+
+    <section class="products-section">
+        <div class="container">
+            <h2 class="section-title">منتجاتنا الصناعية</h2>
+            
+            <div class="products-grid" id="productsGrid">
+                <div class="product-card">
+                    <div class="product-icon">⚙️</div>
+                    <h3>انفرتر ميتسوبيشي</h3>
+                    <p>جهاز مغير سرعة متطور للتحكم الدقيق في حركة المحركات ثلاثية الأوجه وتقليل استهلاك الطاقة.</p>
+                </div>
+                <div class="product-card">
+                    <div class="product-icon">📟</div>
+                    <h3>وحدة PLC سيمنز S7-1200</h3>
+                    <p>متحكم منطقي مبرمج لإدارة الأتمتة والعمليات التتابعية في خطوط الإنتاج والآلات الصناعية.</p>
+                </div>
+                <div class="product-card">
+                    <div class="product-icon">⚡</div>
+                    <h3>لوحة كنترول طاقة وتوزيع</h3>
+                    <p>لوحة تحكم كهربائية متكاملة ومجمعة بأعلى معايير الأمان لحماية الماكينات وتوزيع الأحمال.</p>
+                </div>
+                <div class="product-card">
+                    <div class="product-icon">🖥️</div>
+                    <h3>شاشة HMI دلتا</h3>
+                    <p>شاشة تشغيل متطورة لربط المشغل بالماكينة واستعراض البيانات وقراءة الأعطال لحظياً.</p>
+                </div>
+                <div class="product-card">
+                    <div class="product-icon">🔌</div>
+                    <h3>مفاتيح كونتاكتور شنايدر</h3>
+                    <p>قواطع ومفاتيح مغناطيسية شديدة التحمل لتوصيل وفصل التيارات العالية في المحركات الكبيرة.</p>
+                </div>
+                <div class="product-card">
+                    <div class="product-icon">🔄</div>
+                    <h3>موتور حثي ثلاثي الأوجه</h3>
+                    <p>محرك كهربائي صناعي ذو كفاءة طاقة عالية وتصميم متين يتحمل بيئات العمل الشاقة والتواصل المستمر.</p>
+                </div>
+                <div class="product-card">
+                    <div class="product-icon">🎯</div>
+                    <h3>موتور سيرفو مع درايف</h3>
+                    <p>نظام حركة متكامل فائق الدقة للماكينات التي تتطلب تحديد زوايا ومواقع دقيقة مثل ماكينات CNC.</p>
+                </div>
+                <div class="product-card">
+                    <div class="product-icon">⚙️</div>
+                    <h3>انفرتر دلتا VFD</h3>
+                    <p>جهاز تحكم في السرعة والتردد مرن ومناسب لسيور النقل والمضخات والمراوح الصناعية المختلفة.</p>
+                </div>
+                <div class="product-card">
+                    <div class="product-icon">📟</div>
+                    <h3>وحدة PLC دلتا DVP</h3>
+                    <p>متحكم مبرمج اقتصادي وعالي الاعتمادية، مثالي للتطبيقات الصناعية الصغيرة والمتوسطة المدى.</p>
+                </div>
+                <div class="product-card">
+                    <div class="product-icon">⚡</div>
+                    <h3>لوحة تحكم تشغيل ATS</h3>
+                    <p>لوحة التحويل الآلي بين الشبكة الكهربائية والمولد لضمان عدم انقطاع التيار عن المصنع.</p>
+                </div>
+
+                <div class="no-results" id="noResults">لم يتم العثور على منتجات مطابقة لبحثك.</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="order-section">
+        <div class="container">
+            <h2 class="section-title">طلب استعلام أو صيانة</h2>
+            
+            <form class="order-form" id="contactForm" onsubmit="handleFormSubmit(event)">
+                <div class="form-group">
+                    <label for="fullName">الاسم بالكامل *</label>
+                    <input type="text" id="fullName" required placeholder="أدخل اسمك الكريم">
+                </div>
+                
+                <div class="form-group">
+                    <label for="phoneNumber">رقم الهاتف *</label>
+                    <input type="tel" id="phoneNumber" required placeholder="مثال: 01xxxxxxxxx">
+                </div>
+                
+                <div class="form-group">
+                    <label for="companyName">اسم الشركة أو المصنع *</label>
+                    <input type="text" id="companyName" required placeholder="أدخل اسم المنشأة الصناعية">
+                </div>
+
+                <div class="form-group">
+                    <label for="address">العنوان</label>
+                    <input type="text" id="address" placeholder="المحافظة / المنطقة / الحي">
+                </div>
+                
+                <div class="form-group">
+                    <label for="description">الوصف (المنتج المطلوب أو تفاصيل العطل للصيانة) *</label>
+                    <textarea id="description" rows="4" required placeholder="اكتب تفاصيل طلبك أو نوع الجهاز الذي تود صيانته..."></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">إرسال الطلب الآن</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 الكتروتريد للأجهزة الصناعية والصيانة. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <script>
+        // وظيفة محرك البحث الفوري
+        function searchProducts() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let cards = document.getElementsByClassName('product-card');
+            let noResults = document.getElementById('noResults');
+            let hasVisibleCard = false;
+
+            for (let i = 0; i < cards.length; i++) {
+                let title = cards[i].getElementsByTagName('h3')[0].innerText.toLowerCase();
+                let desc = cards[i].getElementsByTagName('p')[0].innerText.toLowerCase();
+                
+                if (title.includes(input) || desc.includes(input)) {
+                    cards[i].style.display = "";
+                    hasVisibleCard = true;
+                } else {
+                    cards[i].style.display = "none";
+                }
+            }
+
+            // إظهار أو إخفاء رسالة "لا توجد نتائج"
+            if (hasVisibleCard) {
+                noResults.style.display = "none";
+            } else {
+                noResults.style.display = "block";
+            }
+        }
+
+        // معالجة إرسال نموذج البيانات
+        function handleFormSubmit(event) {
+            event.preventDefault(); // منع الصفحة من إعادة التحميل تلقائياً
+            
+            // جلب القيم للتأكيد (يمكنك لاحقاً ربطها بقاعدة بيانات أو سيرفر)
+            let name = document.getElementById('fullName').value;
+            let company = document.getElementById('companyName').value;
+
+            alert(`شكراً لك يا فندم. تم استلام طلبك بنجاح باسم (${name}) من شركة (${company}). سيتواصل معك قسم الدعم الفني أو المبيعات في أقرب وقت.`);
+            
+            // إعادة ضبط الحقول بعد الإرسال
+            document.getElementById('contactForm').reset();
+        }
+    </script>
+</body>
+</html>
